@@ -11000,7 +11000,7 @@ body.scrollable {
 .md-form.md-outline input[type=time]:focus:not([readonly])+label,
 .md-form.md-outline input[type=url]:focus:not([readonly])+label,
 .md-form.md-outline textarea.md-textarea:focus:not([readonly])+label {
-    color: #4285f4;
+    color: red;
 }
 
 .md-form label.active {

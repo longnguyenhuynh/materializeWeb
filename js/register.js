@@ -56,14 +56,8 @@ submitElement.addEventListener("click", submitAccount);
     let obj = new XMLHttpRequest();
     let data = JSON.stringify(input);
     obj.open('POST', url, true);
-    obj.setRequestHeader("Content-type", "application/json");
-    obj.onreadystatechange = () => {
-      if (obj.readyStateChange === 4 && obj.status === 200) {
-      }
-    }
+    obj.setRequestHeader("Content-type", 'application/x-www-form-urlencoded');
   obj.send(data);
-  console.log(data);
-  alert();
 }
 function receiveCheckingUserName() {
   let obj = new XMLHttpRequest();
