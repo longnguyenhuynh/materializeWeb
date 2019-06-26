@@ -63,6 +63,7 @@ submitElement.addEventListener("click", submitAccount);
     }
   obj.send(data);
   console.log(data);
+  alert();
 }
 function receiveCheckingUserName() {
   let obj = new XMLHttpRequest();
