@@ -62,9 +62,7 @@ submitElement.addEventListener("click", submitAccount);
       }
     }
   obj.send(data);
-  console.log(obj.status);
-console.log(obj.responseText);
-alert();
+  console.log(data);
 }
 function receiveCheckingUserName() {
   let obj = new XMLHttpRequest();
