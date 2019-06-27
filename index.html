@@ -27,52 +27,52 @@
                                         <hr> 
                                         <div class="md-form" id="nameContainer"> 
                                             <i class="fas fa-user prefix grey-text"></i> 
-                                            <input type="text" id="name" class="form-control" required> 
+                                            <input type="text" id="name" class="form-control" autocomplete="off" required> 
                                             <label for="name">Your name</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your name must not be blank or contain special characters.
+                                                Your name must not be blank or contain special characters, or numbers.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="userNameContainer"> 
                                             <i class="fas fa-user prefix grey-text"></i> 
-                                            <input type="text" id="userName" class="form-control" required> 
+                                            <input type="text" id="userName" class="form-control" autocomplete="off" required> 
                                             <label for="userName">Your username</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your username must not be blank or contain special characters.
+                                                You can use letters, numbers.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="passwordContainer"> 
                                             <i class="fas fa-lock prefix grey-text"></i> 
-                                            <input type="password" id="password" class="form-control" required> 
+                                            <input type="password" id="password" class="form-control" autocomplete="off" required> 
                                             <label for="password">Your password</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your password must not be blank.
+                                                Your password must be 6 or more characters and contain both numbers and words.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="rePasswordContainer"> 
                                             <i class="fas fa-lock prefix grey-text"></i> 
-                                            <input type="password" id="rePassword" class="form-control" required> 
-                                            <label for="rePassword">Confirm password</label>                                             
+                                            <input type="password" id="rePassword" class="form-control" autocomplete="off" required> 
+                                            <label for="rePassword">Retype password</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
                                                 Your password does not match.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="emailContainer"> 
                                             <i class="fas fa-envelope prefix grey-text"></i> 
-                                            <input type="email" id="email" class="form-control" required> 
+                                            <input type="email" id="email" class="form-control" autocomplete="off" required> 
                                             <label for="email">Your email</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
                                                 Please enter a valid email.
 </div>                                             
                                         </div>                                         
                                         <div class="text-center"> 
-                                            <fieldset class="custom-checkbox form-check">
-                                                <input type="checkbox" class="custom-control-input" id="checkBox">
+                                            <div class="custom-control custom-checkbox mr-sm-2"> 
+                                                <input type="checkbox" class="custom-control-input" id="checkBox"> 
                                                 <label class="custom-control-label" for="checkBox">I agree to the 
                                                     <a href="#">Terms</a> and 
-                                                    <a href="#">Services</a>
-                                                </label>
-                                            </fieldset>                                             
+                                                    <a href="#">Services</a> 
+                                                </label>                                                 
+                                            </div>                                             
                                             <hr> 
                                             <button type="submit" id="submitButton" class="btn tickColor">Create account</button>                                             
                                         </div>                                         
