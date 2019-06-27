@@ -16,25 +16,25 @@ submitElement.addEventListener("click", submitAccount);
 //================================
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict'
+// (function () {
+//     'use strict'
 
-    window.addEventListener('load', function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation')
+//     window.addEventListener('load', function () {
+//       // Fetch all the forms we want to apply custom Bootstrap validation styles to
+//       var forms = document.getElementsByClassName('needs-validation')
 
-      // Loop over them and prevent submission
-      Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-          form.classList.add('was-validated')
-        }, false)
-      })
-    }, false)
-  }())
+//       // Loop over them and prevent submission
+//       Array.prototype.filter.call(forms, function (form) {
+//         form.addEventListener('submit', function (event) {
+//           if (form.checkValidity() === false) {
+//             event.preventDefault()
+//             event.stopPropagation()
+//           }
+//           form.classList.add('was-validated')
+//         }, false)
+//       })
+//     }, false)
+//   }())
 
   function checkConfirmPassword() {
     confirmPasswordElement.addEventListener("keyup", comparePassword);
@@ -42,14 +42,6 @@ submitElement.addEventListener("click", submitAccount);
     let password = passwordElement.value;
     let confirmPassword = confirmPasswordElement.value;
     let alert = document.getElementById('rePasswordContainer').getElementsByClassName('invalid-feedback');
-    setTimeout(function() {
-      if ( confirmPassword != password)
-        alert[0].style.display = 'block';
-      else if (confirmPassword == password)
-        alert[0].style.display = 'none';
-      }
-      , 3000);
-    }
   }
 
   function sendUserData(input, url) {
@@ -64,14 +56,6 @@ function receiveCheckingUserName() {
   let data = JSON.parse();
 }
 
-//check username every 3s
-  function checkUserName() {}
-  //   let userNameInput = userNameElement.value;
-  //   setTimeout(function() {
-  //   sendUserData(userNameInput, "validusername.json");
-  // }, 2000);
-  // }
-
 function formInput() {
   let obj = {
     name: nameElement.value,
@@ -84,5 +68,20 @@ function formInput() {
 
 function submitAccount () {
   let userData = formInput();
-  sendUserData(userData, "http://192.168.1.251:8888");
+  sendUserData(userData, "http://192.168.1.251:0");
+}
+
+
+//long
+
+function checkCheckBox () {
+  return document.getElementById("checkBox").checked;
+}
+
+function checkPassword () {
+  return (passwordElement.value.match(/\D/) && passwordElement.value.match(/\d/)) === null || passwordElement.value.length < 6 ? false : true;
+}
+
+function checkConfirmPassword() {
+  return confirmPasswordElement.value.localeCompare(passwordElement.value) === 0 ? true : false;
 }
