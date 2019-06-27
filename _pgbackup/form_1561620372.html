@@ -30,7 +30,7 @@
                                             <input type="text" id="name" class="form-control" required> 
                                             <label for="name">Your name</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your name is required.
+                                                Your name must not be blank or contain special characters.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="userNameContainer"> 
@@ -58,18 +58,21 @@
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="emailContainer"> 
-                                            <i class="fas fa-envelope prefix grey-text blue-text"></i> 
-                                            <input type="text" id="email" class="form-control" required> 
+                                            <i class="fas fa-envelope prefix grey-text"></i> 
+                                            <input type="email" id="email" class="form-control" required> 
                                             <label for="email">Your email</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
                                                 Please enter a valid email.
 </div>                                             
                                         </div>                                         
                                         <div class="text-center"> 
-                                            <fieldset class="form-check"> 
-                                                <input type="checkbox" class="form-check-input" id="checkbox1"> 
-                                                <label for="checkbox1" class="form-check-label dark-grey-text">I agree to the Terms and Services</label>                                                 
-                                            </fieldset>                                             
+                                            <div class="custom-control custom-checkbox mr-sm-2"> 
+                                                <input type="checkbox" class="custom-control-input" id="checkBox"> 
+                                                <label class="custom-control-label" for="checkBox">I agree to the 
+                                                    <a href="#">Terms</a> and 
+                                                    <a href="#">Services</a> 
+                                                </label>                                                 
+                                            </div>                                             
                                             <hr> 
                                             <button type="submit" id="submitButton" class="btn tickColor">Create account</button>                                             
                                         </div>                                         

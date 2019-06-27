@@ -38,7 +38,7 @@
                                             <input type="text" id="userName" class="form-control" required> 
                                             <label for="userName">Your username</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your username must not be blank or contain special characters.
+                                                Your username is required.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="passwordContainer"> 
@@ -46,13 +46,13 @@
                                             <input type="password" id="password" class="form-control" required> 
                                             <label for="password">Your password</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
-                                                Your password must not be blank.
+                                                Your password is required.
 </div>                                             
                                         </div>                                         
                                         <div class="md-form" id="rePasswordContainer"> 
                                             <i class="fas fa-lock prefix grey-text"></i> 
                                             <input type="password" id="rePassword" class="form-control" required> 
-                                            <label for="rePassword">Confirm password</label>                                             
+                                            <label for="rePassword">Retype password</label>                                             
                                             <div class="invalid-feedback" style="width: 100%;"> 
                                                 Your password does not match.
 </div>                                             
@@ -66,13 +66,13 @@
 </div>                                             
                                         </div>                                         
                                         <div class="text-center"> 
-                                            <fieldset class="custom-checkbox form-check">
-                                                <input type="checkbox" class="custom-control-input" id="checkBox">
+                                            <div class="custom-control custom-checkbox mr-sm-2"> 
+                                                <input type="checkbox" class="custom-control-input" id="checkBox"> 
                                                 <label class="custom-control-label" for="checkBox">I agree to the 
                                                     <a href="#">Terms</a> and 
-                                                    <a href="#">Services</a>
-                                                </label>
-                                            </fieldset>                                             
+                                                    <a href="#">Services</a> 
+                                                </label>                                                 
+                                            </div>                                             
                                             <hr> 
                                             <button type="submit" id="submitButton" class="btn tickColor">Create account</button>                                             
                                         </div>                                         
