@@ -18,29 +18,6 @@ confirmPasswordElement.addEventListener("focusin", addFocus);
 emailElement.addEventListener("focusin", addFocus);
 //===============================================================
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-  'use strict'
-
-  window.addEventListener('load', function () {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation')
-
-    // Loop over them and prevent submission
-    Array.prototype.filter.call(forms, function (form) {
-      form.addEventListener('submit', function (event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        form.classList.add('was-validated')
-      }, false)
-    })
-  }, false)
-}())
-
-
-
 //Check and Valid function
   function validData() {
     let check1 = validName();
@@ -105,14 +82,14 @@ emailElement.addEventListener("focusin", addFocus);
     }
     let checkSameEmail = () => {
       let responseServer = new response();
-      sendUserDataGET(mail, URL_INPUT, responseServer.processCheck);
+      sendUserDataGET(mail, URL_INPUT,"EMAIL" ,responseServer.processCheck);
       let checkSameDataEmail = new response();
       receiveData(URL_INPUT, checkSameDataEmail.processCheck);
       return checkSameDataEmail.check;
     }
     let check1 = checkmail(mail);
     let check2 = checkEmpty();
-    //let check3 = checkSameEmail();
+    let check4 = checkSameEmail();
     let check3 = 1;
     return (check1 * check2 * check3);
   }
@@ -135,15 +112,12 @@ emailElement.addEventListener("focusin", addFocus);
     }
     let checkSameUserName = () => {
       let responseServer = new response();
-      sendUserData(userNameInput, URL_INPUT, responseServer.processCheck);
+      sendUserDataGET(userNameInput, URL_INPUT,"USERNAME" ,responseServer.processCheck);
       return responseServer.check;
-      // let checkSameDataObjUserName = new response();
-      // receiveData(URL_INPUT, checkSameDataObjUserName.processCheck);
-      //return checkSameDataObjUserName.check;
     }
       let check1 = checkEmpty();
       let check2 = checkContainingWordAndNumber();
-      //let check3 = checkSameUserName();
+      let check4 = checkSameUserName();
       let check3 = 1;
     return (check1 * check2 * check3);
   }
@@ -220,8 +194,7 @@ function checkAllField() {
 
 //
 function submitAccount() {
-  // let check = validData();
-  let check = 1;
+  let check = validData();
   if (check) {
     let userData = formInput();
     let responseServer = new response();
@@ -230,35 +203,24 @@ function submitAccount() {
   else 
     checkAllField();
 }
+
 function sendUserData(input, url, callback) {
-  let obj = new XMLHttpRequest();
+  const Http = new XMLHttpRequest();
   let data = JSON.stringify(input);
-  obj.open('POST', url, true);
-  obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  obj.onreadystatechange = () => {
-    if (this.readyState === 4 && this.status === 200) {
-      //get response message after sending data 
-      //receiveData(URL_INPUT, callback);
-      callback(obj.responseText);
-      alert(obj.responseText);
-    }
+  Http.open("POST", url);
+  Http.send(data + '\n');
+  Http.onreadystatechange = (e) => {
+    callback(this.responseText);
   }
-  obj.send(data);
 }
 
-function sendUserDataGET(input, url, callback) {
-  let obj = new XMLHttpRequest();
-  let data = JSON.stringify(input);
-  obj.open('GET', url, true);
-  // obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  obj.onreadystatechange = () => {
-    if (obj.readyStateChange === 4 && obj.status === 200) {
-      //get response message after sending data 
-      callback(obj.responseText);
-      alert(obj.responseText);
-    }
+function sendUserDataGET(input, url, type, callback) {
+  const Http = new XMLHttpRequest();
+  Http.open("GET", url+"?"+ type + ':' +input);
+  Http.send();
+  Http.onreadystatechange = (e) => {
+    callback(this.responseText);
   }
-  obj.send(data);
 }
 
 function receiveData(url, processCheck) {
@@ -288,8 +250,4 @@ function response() {
     if (responseText == 'OK')
       this.check = true;
   }
-}
-
-function afterSubmit () {
-
 }
