@@ -72,14 +72,17 @@ function validEmail() {
     else
       return true;
   }
-  let checkSameEmail = () => {
-    let responseServer = new response();
-    sendUserDataGET(mail, URL_INPUT, "EMAIL", responseServer.processCheck);
-  }
   let check1 = checkmail(mail);
   let check2 = checkEmpty();
-  let check3 = checkSameEmail();
-  return (check1 * check2 * check3);
+  let check3 = sendUserDataGET(mail, URL_INPUT, "EMAIL")
+  .then(function(result) {
+    let responseServer = new response();
+    responseServer.processCheck(result);
+    return responseServer.check;
+  })
+  .then(function(value) {
+    validEvent(check1 * check2 * value, "email");
+  });
 }
 
 function validUserName() {
@@ -98,15 +101,17 @@ function validUserName() {
     }
     return true;
   }
-  let checkSameUserName = () => {
-    let responseServer = new response();
-    sendUserDataGET(userNameInput, URL_INPUT, "USERNAME", responseServer.processCheck);
-    return responseServer.check;
-  }
   let check1 = checkEmpty();
   let check2 = checkContainingWordAndNumber();
-  let check3 = checkSameUserName();
-  return (check1 * check2 * check3);
+  let check3 = sendUserDataGET(userNameInput, URL_INPUT, "USERNAME")
+  .then(function(result) {
+    let responseServer = new response();
+    responseServer.processCheck(result);
+    return responseServer.check;
+  })
+  .then(function(value) {
+    validEvent(check1 * check2 * value, "userName");
+  });
 }
 
 function getElement(string) {
@@ -159,12 +164,12 @@ function addFocus() {
       break;
     case "userName":
       userNameElement.addEventListener("focusout", function() {
-        validEvent(validUserName(), "userName");
+        validUserName();
       });
       break;
     case "email":
       emailElement.addEventListener("focusout", function() {
-        validEvent(validEmail(), "email");
+        validEmail();
       });
       break;
   }
@@ -193,7 +198,7 @@ function submitAccount() {
 function sendUserData(input, url, callback) {
   var Http = new XMLHttpRequest();
   let data = JSON.stringify(input);
-  Http.onreadystatechange = (e) => {
+  Http.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200)
       callback(this.responseText);
   }
@@ -201,14 +206,15 @@ function sendUserData(input, url, callback) {
   Http.send(data + '\n');
 }
 
-function sendUserDataGET(input, url, type, callback) {
-  var Http = new XMLHttpRequest();
-  Http.onreadystatechange = () => {
-    if (this.readyState == 4 && this.status == 200)
-      callback(this.responseText);
-  }
-  Http.open("GET", url + "?" + type + ':' + input, true);
-  Http.send();
+function sendUserDataGET(input, url, type) {
+  return new Promise(function(resolve, reject) {
+    var Http = new XMLHttpRequest();
+    Http.onload = function() {
+      resolve(this.responseText);
+    };
+    Http.open('GET', url + "?" + type + ':' + input, true);
+    Http.send();
+  });
 }
 
 function formInput() {
